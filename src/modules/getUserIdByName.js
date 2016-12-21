@@ -14,4 +14,5 @@ function getUserIdByName(username) {
     .GET(url, parameters)
     .then(data => data.user_id);
 }
- module.exports = getUserIdByName;
+
+module.exports = getUserIdByName;

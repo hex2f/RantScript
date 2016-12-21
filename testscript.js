@@ -1,6 +1,6 @@
 var devrant = require('./src/index.js');
 devrant
-  .profile("Dacexi")
+  .rants('algo', 1, 0)
   .then((response)=>{
     console.log(response);
   })
