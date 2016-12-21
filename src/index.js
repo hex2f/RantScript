@@ -60,8 +60,23 @@ function login(email, passwd) {
 	};
 
 	return http
-		.POST(url, parameters)
-		.then(data => data.results);
+		.POST(url, parameters);
+}
+
+function postRant(rant, tags, token_id, token_key, user_id) {
+	const url = `${variables['API']}/devrant/rants`;
+	const parameters = {
+		app: 3,
+		plat: 3,
+		rant: rant,
+		tags: tags,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	return http
+		.POST(url, parameters);
 }
 
 module.exports = {
@@ -69,5 +84,6 @@ module.exports = {
 	rant,
 	rants,
 	search,
-	login
+	login,
+	postRant
 }

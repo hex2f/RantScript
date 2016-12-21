@@ -1,3 +1,3 @@
 module.exports = {
-  API: 'https://devrant.io/api'
+  API: 'https://www.devrant.io/api'
 }

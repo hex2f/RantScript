@@ -13,6 +13,7 @@ const FormData = require('form-data');
 function GET(uri, params) {
 	const requestURL = `${uri}${url.format({ query: params })}`;
   console.log(`request URL: ${requestURL}`);
+
 	return fetch(requestURL)
     .then(function handleRequest(res) {
       const statusText = res.statusText;
@@ -31,20 +32,19 @@ function GET(uri, params) {
 }
 
 function POST(uri, params) {
-	var data = new FormData();
-	for (var i = 0; i < params.length; i++) {
-		data.append(params[i].key(), 1);
+	var form = new FormData();
+	for (var i in params) {
+		form.append(i, params[i]);
 	}
-	console.log(data);
+
 	const requestURL = `${uri}`;
   console.log(`request URL: ${requestURL}`);
-	console.log(`request Body: ${url.format({ query: params })}`)
-	return fetch(requestURL, { method: 'POST', body: data, headers: {contentType: 'multipart/form-data'} })
+
+	return fetch(requestURL, { method: 'POST', formData: form, body: form, headers: form.getHeaders() })
     .then(function handleRequest(res) {
-      const statusText = res.statusText;
 			const status = res.status;
 			if (status != 200) {
-				const error = new Error(`Request failed: ${statusText}`);
+				const error = new Error(`Request failed: ${status}`);
 				error.status = status;
 				throw error;
 			}
