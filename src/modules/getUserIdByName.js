@@ -3,8 +3,8 @@ const co = require('co');
 const http = require('../utilities/http');
 const variables = require('../variables');
 
-function _getIdByUsername(username) {
-	const url = `${variables.API}/get-user-id`;
+function getUserIdByName(username) {
+	const url = `${variables['API']}/get-user-id`;
 	const parameters = {
 		app: 3,
 		username
@@ -14,3 +14,4 @@ function _getIdByUsername(username) {
     .GET(url, parameters)
     .then(data => data.user_id);
 }
+ module.exports = getUserIdByName;

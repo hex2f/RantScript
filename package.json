@@ -25,6 +25,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "fetch": "^1.1.0",
+    "node-fetch": "^1.6.3",
     "url": "^0.11.0"
   }
 }

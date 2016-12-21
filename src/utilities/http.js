@@ -4,14 +4,14 @@ const url = require('url');
 const fetch = require('node-fetch');
 
 /**
- * @param {String} url    - request URL
+ * @param {String} uri    - request URL
  * @param {Object} params - request parameters
  * @return {Promise}  HTTP response
  */
 
 function GET(uri, params) {
-	const requestURL = `${url}${url.format({ query: params })}`;
-  log(`request URL: ${requestURL}`);
+	const requestURL = `${uri}${url.format({ query: params })}`;
+  console.log(`request URL: ${requestURL}`);
 	return fetch(requestURL)
     .then(function handleRequest(res) {
       const statusText = res.statusText;
@@ -24,7 +24,7 @@ function GET(uri, params) {
 			return res.json();
 		})
 		.catch(error => {
-			log('error: ', error);
+			console.log('error: ', error);
 			throw error;
 		});
 }
