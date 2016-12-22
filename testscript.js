@@ -1,4 +1,5 @@
 var devrant = require('./src/index.js');
+
 devrant
   .login('Username', 'Password')
   .then((response)=>{
