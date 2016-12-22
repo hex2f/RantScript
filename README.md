@@ -12,7 +12,7 @@
 var devRant = require('RantScript');
 
 devRant
-  .rants('algo', 1, 0)
+  .rants('top', 10, 0)
   .then((response)=>{
     console.log(response);
   })
@@ -45,11 +45,14 @@ devRant
 ##
 
 ### All Functions
-| Function   | Usage                                                   | Description               |
-| ---------- |---------------------------------------------------------| --------------------------|
-| .rants     | .rants('sort', limit, skip)                             | Load rants.               |
-| .rant      | .rant(rant_id)                                          | Load a single rant by id. |
-| .search    | .search('search term')                                  | Search on devRant         |
-| .profile   | .profile('Username')                                    | Load a profile by name    |
-| .login     | .login('Username','Password')                           | Get a devRant auth token  |
-| .postRant  | .postRant('Rant', 'Tags', token_id, token_key, user_id) | Post a rant to devRant    |
+| Function     | Usage                                                                    | Description               |
+| ------------ | ------------------------------------------------------------------------ | ------------------------- |
+| .rants       | .rants('sort', limit, skip)                                              | Load rants.               |
+| .rant        | .rant(rant_id)                                                           | Load a single rant by id. |
+| .search      | .search('search term')                                                   | Search on devRant         |
+| .profile     | .profile('Username')                                                     | Load a profile by name    |
+| .login       | .login('Username','Password')                                            | Get a devRant auth token  |
+| .postRant    | .postRant('Rant', 'Tags', token_id, token_key, user_id)                  | Post a rant to devRant    |
+| .postComment | .postComment('Comment', rant_id, token_id, token_key, user_id)           | Post a comment to a rant  |
+| .vote        | .vote(<0 = down | 1 = up>, rant_id, token_id, token_key, user_id)        | Vote on a rant            |
+| .voteComment | .voteComment(<0 = down | 1 = up>, rant_id, token_id, token_key, user_id) | Vote on a comment         |
