@@ -4,6 +4,10 @@
 
 ##
 
+### Install
+```javascript
+npm install rantscript
+```
 ### Examples
 
 #### Console logging the 10 top posts on devRant:
