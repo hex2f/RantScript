@@ -1,6 +1,6 @@
 {
   "name": "rantscript",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A JavaScript wrapper for the FULL devRant API",
   "main": "src/index.js",
   "scripts": {
