@@ -12,7 +12,7 @@
 var devRant = require('RantScript');
 
 devRant
-  .rants('algo', 1, 0)
+  .rants('top', 10, 0)
   .then((response)=>{
     console.log(response);
   })
