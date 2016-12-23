@@ -58,5 +58,5 @@ devRant
 | .login       | .login('Username','Password')                                            | Get a devRant auth token  |
 | .postRant    | .postRant('Rant', 'Tags', token_id, token_key, user_id)                  | Post a rant to devRant    |
 | .postComment | .postComment('Comment', rant_id, token_id, token_key, user_id)           | Post a comment to a rant  |
-| .vote        | .vote(<0 = down | 1 = up>, rant_id, token_id, token_key, user_id)        | Vote on a rant            |
-| .voteComment | .voteComment(<0 = down | 1 = up>, rant_id, token_id, token_key, user_id) | Vote on a comment         |
+| .vote        | .vote(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id)        | Vote on a rant            |
+| .voteComment | .voteComment(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id) | Vote on a comment         |
