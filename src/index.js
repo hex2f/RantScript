@@ -3,6 +3,7 @@ const co = require('co');
 const http = require('./utilities/http');
 const variables = require('./variables');
 const getUserIdByName = require('./modules/getUserIdByName.js');
+const httpSettings = http.SETTINGS;
 
 function profile(username) {
 	return co(function *resolveUsername() {
@@ -140,6 +141,7 @@ function voteComment(vote, comment_id, token_id, token_key, user_id) {
 }
 
 module.exports = {
+	httpSettings,
   profile,
 	rant,
 	rants,

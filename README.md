@@ -13,7 +13,7 @@ npm install rantscript
 #### Console logging the 10 top posts on devRant:
 
 ```javascript
-var devRant = require('RantScript');
+var devRant = require('rantscript');
 
 devRant
   .rants('top', 10, 0)
@@ -22,10 +22,22 @@ devRant
   })
 ```
 
+#### Enableing debug mode and compression:
+
+```javascript
+var devRant = require('rantscript');
+devRant.httpSettings.SET_DEBUG(true);
+console.log(devrant.httpSettings.GET_DEBUG());
+//Returns True
+
+devRant.httpSettings.SET_COMPRESS(true);
+console.log(devrant.httpSettings.GET_COMPRESS());
+//Returns True
+```
 #### Logging in and posting a rant:
 
 ```javascript
-var devRant = require('RantScript');
+var devRant = require('rantscript');
 
 //Get authentication token from devRant API
 devRant
@@ -60,3 +72,12 @@ devRant
 | .postComment | .postComment('Comment', rant_id, token_id, token_key, user_id)           | Post a comment to a rant  |
 | .vote        | .vote(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id)        | Vote on a rant            |
 | .voteComment | .voteComment(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id) | Vote on a comment         |
+| .httpSettings| See Bellow | Change settings for the http requests |
+
+### All Settings
+| Function     | Usage                                                 |
+| ------------ | ----------------------------------------------------- |
+| .GET_DEBUG()                  | Returns the current Debug state.     |   
+| .SET_DEBUG(true or false)     | Enable or disable console.log        |
+| .GET_COMPRESS()               | Returns the current Compress state.  |
+| .SET_COMPRESS(true or false)  | Enable or disable compression.       |
