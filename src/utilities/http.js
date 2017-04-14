@@ -2,7 +2,6 @@
 
 const url = require('url');
 const fetch = require('node-fetch');
-const FormData = require('form-data');
 
 let compress = true;
 let debug = false;
@@ -46,15 +45,17 @@ function GET(uri, params) {
 }
 
 function POST(uri, params) {
-	var form = new FormData();
+	let form = "";
 	for (var i in params) {
-		form.append(i, params[i]);
+		form+=`&${i}=${params[i]}`
 	}
+	form = form.substring(1, form.length)
+	log("Post Body:  " + form)
 
 	const requestURL = `${uri}`;
   log(`request URL: ${requestURL}`);
 
-	return fetch(requestURL, { method: 'POST', compress: compress, formData: form, body: form, headers: form.getHeaders() })
+	return fetch(requestURL, { method: 'POST', compress: compress, body: form, headers: { 'Content-Type': 'application/x-www-form-urlencoded' },})
     .then(function handleRequest(res) {
 			const status = res.status;
 			if (status != 200) {

@@ -6,7 +6,7 @@ console.log('Debug: ', devrant.httpSettings.GET_DEBUG());
 console.log('Compress: ', devrant.httpSettings.GET_COMPRESS());
 
 devrant
-  .login('Username', 'Password')
+  .login('username', 'password')
   .then((response)=>{
     devrant.vote(
       1,
