@@ -27,12 +27,23 @@ function rant(rant_id) {
 	});
 }
 
-function rants(sort, limit, skip) {
+function rants(sort, limit, skip, token) {
 	const url = `${variables['API']}/devrant/rants`;
-	const parameters = {
+
+	let parameters = {
 		app: 3,
 		sort, limit, skip
 	};
+
+	if (token != undefined && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			sort, limit, skip, token_id, token_key, user_id
+		};
+	}
 
 	return http
 		.GET(url, parameters)
