@@ -17,10 +17,20 @@ function profile(username) {
 	});
 }
 
-function rant(rant_id) {
+function rant(rant_id, token) {
 	return co(function *getrant() {
 		const url = `${variables['API']}/devrant/rants/${rant_id}`;
-		const parameters = { app: 3	};
+		let parameters = { app: 3	};
+		console.log(token)
+		if (token != null && token != undefined) {
+			const token_id = token["id"];
+			const token_key = token["key"];
+			const user_id = token["user_id"];
+			parameters = {
+				app: 3,
+				token_id, token_key, user_id
+			};
+		}
 
 		return http
 			.GET(url, parameters);
@@ -35,7 +45,7 @@ function rants(sort, limit, skip, token) {
 		sort, limit, skip
 	};
 
-	if (token != undefined && token != undefined) {
+	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
 		const user_id = token["user_id"];
