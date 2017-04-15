@@ -147,14 +147,13 @@ function vote(vote, rant_id, token_id, token_key, user_id) {
 }
 
 function voteComment(vote, comment_id, token_id, token_key, user_id) {
-	const url = `${variables['API']}/devrant/comments/${rant_id}/vote`;
+	const url = `${variables['API']}/comments/${comment_id}/vote`;
 	const parameters = {
 		app: 3,
-		plat: 3,
-		vote: vote,
 		token_id: token_id,
 		token_key: token_key,
-		user_id: user_id
+		user_id: user_id,
+		vote: vote,
 	};
 
 	return http

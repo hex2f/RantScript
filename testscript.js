@@ -8,9 +8,12 @@ console.log('Compress: ', devrant.httpSettings.GET_COMPRESS());
 devrant
   .login('Username', 'Password')
   .then((response)=>{
-    devrant.rant(
-      516988,
-      response["auth_token"]
+    devrant.voteComment(
+      '1',
+      '517087',
+      response["auth_token"]["id"],
+      response["auth_token"]["key"],
+      response["auth_token"]["user_id"]
     ).then((resp)=>{
       console.log(resp);
     })
