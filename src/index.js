@@ -160,6 +160,22 @@ function voteComment(vote, comment_id, token_id, token_key, user_id) {
 		.POST(url, parameters);
 }
 
+function notifications(token, last_time) {
+	if(last_time === undefined) { last_time = 0; }
+	const url = `${variables['API']}/users/me/notif-feed`;
+	const parameters = {
+		app: 3,
+		token_id: token["id"],
+		token_key: token["key"],
+		user_id: token["user_id"],
+		last_time: last_time
+	};
+
+	return http
+		.GET(url, parameters)
+}
+
+
 module.exports = {
 	httpSettings,
   profile,
@@ -170,5 +186,6 @@ module.exports = {
 	postRant,
 	postComment,
 	vote,
-	voteComment
+	voteComment,
+	notifications
 }
