@@ -168,7 +168,9 @@ function notifications(token, last_time) {
 		token_id: token["id"],
 		token_key: token["key"],
 		user_id: token["user_id"],
-		last_time: last_time
+		last_time: last_time,
+		plat: 2,
+		ext_prof: 1,
 	};
 
 	return http
