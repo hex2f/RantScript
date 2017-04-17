@@ -116,21 +116,6 @@ function postComment(text, rant_id, token_id, token_key, user_id) {
 		.POST(url, parameters);
 }
 
-function postComment(text, rant_id, token_id, token_key, user_id) {
-	const url = `${variables['API']}/devrant/rants/${rant_id}/comments`;
-	const parameters = {
-		app: 3,
-		plat: 3,
-		comment: text,
-		token_id: token_id,
-		token_key: token_key,
-		user_id: user_id
-	};
-
-	return http
-		.POST(url, parameters);
-}
-
 function vote(vote, rant_id, token_id, token_key, user_id) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/vote`;
 	const parameters = {
