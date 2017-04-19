@@ -210,6 +210,31 @@ function stories(range = 'week', sort = 'recent', limit, skip, token) {
 		.then(data => data.rants);
 }
 
+function weekly(week, sort = 'recent', limit, skip, token) {
+	// sort = ['algo', recent', 'top']
+	// week = <week_number>
+	const url = `${variables['API']}/devrant/story-rants`;
+
+	let parameters = {
+		app: 3,
+		range, sort, limit, skip
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			range, sort, limit, skip, token_id, token_key, user_id
+		};
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.rants);
+}
+
 module.exports = {
 	httpSettings,
   	profile,
@@ -223,5 +248,6 @@ module.exports = {
 	voteComment,
 	notifications,
 	collabs,
-	stories
+	stories,
+	weekly
 }
