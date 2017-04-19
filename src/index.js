@@ -213,7 +213,7 @@ function stories(range = 'week', sort = 'recent', limit, skip, token) {
 function weekly(week, sort = 'recent', limit, skip, token) {
 	// sort = ['algo', recent', 'top']
 	// week = <week_number>
-	const url = `${variables['API']}/devrant/story-rants`;
+	const url = `${variables['API']}/devrant/weekly-rants`;
 
 	let parameters = {
 		app: 3,
