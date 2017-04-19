@@ -217,7 +217,7 @@ function weekly(week, sort = 'recent', limit, skip, token) {
 
 	let parameters = {
 		app: 3,
-		range, sort, limit, skip
+		week, sort, limit, skip
 	};
 
 	if (token != null && token != undefined) {
@@ -226,7 +226,7 @@ function weekly(week, sort = 'recent', limit, skip, token) {
 		const user_id = token["user_id"];
 		parameters = {
 			app: 3,
-			range, sort, limit, skip, token_id, token_key, user_id
+			week, sort, limit, skip, token_id, token_key, user_id
 		};
 	}
 
