@@ -162,10 +162,82 @@ function notifications(token, last_time) {
 		.GET(url, parameters)
 }
 
+function collabs(sort = 'recent', limit, skip, token) {
+	const url = `${variables['API']}/devrant/collabs`;
+
+	let parameters = {
+		app: 3,
+		sort, limit, skip
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			sort, limit, skip, token_id, token_key, user_id
+		};
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.rants);
+}
+
+function stories(range = 'week', sort = 'recent', limit, skip, token) {
+	// sort = ['recent', 'top']
+	// range = ['day', 'week', 'month', 'all']
+	const url = `${variables['API']}/devrant/story-rants`;
+
+	let parameters = {
+		app: 3,
+		range, sort, limit, skip
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			range, sort, limit, skip, token_id, token_key, user_id
+		};
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.rants);
+}
+
+function weekly(week, sort = 'recent', limit, skip, token) {
+	// sort = ['algo', recent', 'top']
+	// week = <week_number>
+	const url = `${variables['API']}/devrant/weekly-rants`;
+
+	let parameters = {
+		app: 3,
+		week, sort, limit, skip
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			week, sort, limit, skip, token_id, token_key, user_id
+		};
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.rants);
+}
 
 module.exports = {
 	httpSettings,
-  profile,
+  	profile,
 	rant,
 	rants,
 	search,
@@ -174,5 +246,8 @@ module.exports = {
 	postComment,
 	vote,
 	voteComment,
-	notifications
+	notifications,
+	collabs,
+	stories,
+	weekly
 }
