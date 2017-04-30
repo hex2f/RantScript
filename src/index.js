@@ -2,19 +2,25 @@
 const co = require('co');
 const http = require('./utilities/http');
 const variables = require('./variables');
-const getUserIdByName = require('./modules/getUserIdByName.js');
 const httpSettings = http.SETTINGS;
 
-function profile(username) {
-	return co(function *resolveUsername() {
-		const user_id = yield getUserIdByName(username);
-		const url = `${variables['API']}/users/${user_id}`;
-		const parameters = { app: 3	};
+function profile(user_id, token) {
+	const url = `${variables['API']}/users/${user_id}`;
+	let parameters = { app: 3, plat: 2, };
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			plat: 2,
+			token_id, token_key, user_id
+		};
+	}
 
-		return http
-			.GET(url, parameters)
-			.then(data => data.profile);
-	});
+	return http
+		.GET(url, parameters)
+		.then(data => data.profile);
 }
 
 function rant(rant_id, token) {
@@ -85,8 +91,13 @@ function login(email, passwd) {
 		.POST(url, parameters);
 }
 
-function postRant(rant, tags, token_id, token_key, user_id) {
+function postRant(rant, tags, token) {
 	const url = `${variables['API']}/devrant/rants`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
 	const parameters = {
 		app: 3,
 		plat: 3,
@@ -101,8 +112,13 @@ function postRant(rant, tags, token_id, token_key, user_id) {
 		.POST(url, parameters);
 }
 
-function postComment(text, rant_id, token_id, token_key, user_id) {
+function postComment(text, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/comments`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
 	const parameters = {
 		app: 3,
 		plat: 3,
@@ -116,8 +132,13 @@ function postComment(text, rant_id, token_id, token_key, user_id) {
 		.POST(url, parameters);
 }
 
-function vote(vote, rant_id, token_id, token_key, user_id) {
+function vote(vote, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/vote`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
 	const parameters = {
 		app: 3,
 		plat: 3,
@@ -131,8 +152,13 @@ function vote(vote, rant_id, token_id, token_key, user_id) {
 		.POST(url, parameters);
 }
 
-function voteComment(vote, comment_id, token_id, token_key, user_id) {
+function voteComment(vote, comment_id, token) {
 	const url = `${variables['API']}/comments/${comment_id}/vote`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
 	const parameters = {
 		app: 3,
 		token_id: token_id,
@@ -162,7 +188,9 @@ function notifications(token, last_time) {
 		.GET(url, parameters)
 }
 
-function collabs(sort = 'recent', limit, skip, token) {
+function collabs(sort, limit, skip, token) {
+	if(sort == undefined)
+		sort = 'recent';
 	const url = `${variables['API']}/devrant/collabs`;
 
 	let parameters = {
@@ -185,7 +213,11 @@ function collabs(sort = 'recent', limit, skip, token) {
 		.then(data => data.rants);
 }
 
-function stories(range = 'week', sort = 'recent', limit, skip, token) {
+function stories(range, sort, limit, skip, token) {
+	if(range == undefined)
+		range = 'week';
+	if(sort == undefined)
+		sort = 'recent';
 	// sort = ['recent', 'top']
 	// range = ['day', 'week', 'month', 'all']
 	const url = `${variables['API']}/devrant/story-rants`;
@@ -210,7 +242,9 @@ function stories(range = 'week', sort = 'recent', limit, skip, token) {
 		.then(data => data.rants);
 }
 
-function weekly(week, sort = 'recent', limit, skip, token) {
+function weekly(week, sort, limit, skip, token) {
+	if(sort == undefined)
+		sort = 'recent';
 	// sort = ['algo', recent', 'top']
 	// week = <week_number>
 	const url = `${variables['API']}/devrant/weekly-rants`;
@@ -237,7 +271,7 @@ function weekly(week, sort = 'recent', limit, skip, token) {
 
 module.exports = {
 	httpSettings,
-  	profile,
+	profile,
 	rant,
 	rants,
 	search,
