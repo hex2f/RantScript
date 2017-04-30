@@ -48,9 +48,7 @@ devRant
   	devRant.postRant(
       "Rant Text",
       "Tags, Separated, By, Commas",
-      response["auth_token"]["id"],
-      response["auth_token"]["key"],
-      response["auth_token"]["user_id"]
+      response["auth_token"]
     ).then((resp)=>{
       //Then console.log the rant data.
       console.log(resp);
@@ -61,18 +59,18 @@ devRant
 ##
 
 ### All Functions
-| Function     | Usage                                                                    | Description               |
-| ------------ | ------------------------------------------------------------------------ | ------------------------- |
-| .rants       | .rants('sort', limit, skip)                                              | Load rants.               |
-| .rant        | .rant(rant_id)                                                           | Load a single rant by id. |
-| .search      | .search('search term')                                                   | Search on devRant         |
-| .profile     | .profile('Username')                                                     | Load a profile by name    |
-| .login       | .login('Username','Password')                                            | Get a devRant auth token  |
-| .postRant    | .postRant('Rant', 'Tags', token_id, token_key, user_id)                  | Post a rant to devRant    |
-| .postComment | .postComment('Comment', rant_id, token_id, token_key, user_id)           | Post a comment to a rant  |
-| .vote        | .vote(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id)        | Vote on a rant            |
-| .voteComment | .voteComment(<0 = down & 1 = up>, rant_id, token_id, token_key, user_id) | Vote on a comment         |
-| .httpSettings| See Bellow | Change settings for the http requests |
+| Function     | Usage                                             | Description               |
+| ------------ | ------------------------------------------------- | ------------------------- |
+| .rants       | .rants('sort', limit, skip, token)                | Load rants.               |
+| .rant        | .rant(rant_id)                                    | Load a single rant by id. |
+| .search      | .search('search term')                            | Search on devRant         |
+| .profile     | .profile('Username')                              | Load a profile by name    |
+| .login       | .login('Username','Password')                     | Get a devRant auth token  |
+| .postRant    | .postRant('Rant', 'Tags', token)                  | Post a rant to devRant    |
+| .postComment | .postComment('Comment', rant_id, token)           | Post a comment to a rant  |
+| .vote        | .vote(<0 = down & 1 = up>, rant_id, token)        | Vote on a rant            |
+| .voteComment | .voteComment(<0 = down & 1 = up>, rant_id, token) | Vote on a comment         |
+| .httpSettings| See Bellow | Change settings for the http requests|
 
 ### All Settings
 | Function     | Usage                                                 |
