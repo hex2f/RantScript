@@ -43,7 +43,7 @@ var devRant = require('rantscript');
 devRant
   .login('username', 'password')
   .then((response)=>{
-  	//Then post a rant to devRant with token gotten from previus request.
+  	//Then post a rant to devRant with token gotten from previous request.
 
   	devRant.postRant(
       "Rant Text",
