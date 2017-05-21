@@ -43,12 +43,12 @@ function rant(rant_id, token) {
 	});
 }
 
-function rants(sort, limit, skip, token) {
+function rants(sort, limit, skip, prev_set, token) {
 	const url = `${variables['API']}/devrant/rants`;
 
 	let parameters = {
 		app: 3,
-		sort, limit, skip
+		sort, limit, skip, prev_set
 	};
 
 	if (token != null && token != undefined) {
@@ -57,13 +57,13 @@ function rants(sort, limit, skip, token) {
 		const user_id = token["user_id"];
 		parameters = {
 			app: 3,
-			sort, limit, skip, token_id, token_key, user_id
+			sort, limit, skip, token_id, token_key, user_id, prev_set
 		};
 	}
 
 	return http
 		.GET(url, parameters)
-		.then(data => data.rants);
+		.then(data => data);
 }
 
 function search(query) {
