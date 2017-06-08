@@ -188,6 +188,21 @@ function notifications(token, last_time) {
 		.GET(url, parameters)
 }
 
+function clearNotifications(token) {
+	const url = `${variables['API']}/users/me/notif-feed`;
+	const parameters = {
+		app: 3,
+		token_id: token["id"],
+		token_key: token["key"],
+		user_id: token["user_id"],
+		plat: 2,
+		ext_prof: 1,
+	};
+
+	return http
+		.DELETE(url, parameters)
+}
+
 function collabs(sort, limit, skip, token) {
 	if(sort == undefined)
 		sort = 'recent';
