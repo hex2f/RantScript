@@ -196,7 +196,6 @@ function clearNotifications(token) {
 		token_key: token["key"],
 		user_id: token["user_id"],
 		plat: 2,
-		ext_prof: 1,
 	};
 
 	return http
@@ -296,6 +295,7 @@ module.exports = {
 	vote,
 	voteComment,
 	notifications,
+	clearNotifications,
 	collabs,
 	stories,
 	weekly
