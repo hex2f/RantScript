@@ -46,12 +46,17 @@ function rant(rant_id, token) {
 function rants(sort, limit, skip, prev_set, token, range) {
 	const url = `${variables['API']}/devrant/rants`;
 
-	if(range == undefined) {range = ''}
-
 	let parameters = {
 		app: 3,
-		sort, limit, skip, prev_set, range
+		sort, limit, skip, prev_set
 	};
+
+	if(range != undefined) {
+		parameters = {
+			app: 3,
+			sort, limit, skip, prev_set, range
+		};
+	}
 
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
