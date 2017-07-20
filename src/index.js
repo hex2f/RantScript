@@ -43,12 +43,14 @@ function rant(rant_id, token) {
 	});
 }
 
-function rants(sort, limit, skip, prev_set, token) {
+function rants(sort, limit, skip, prev_set, token, range) {
 	const url = `${variables['API']}/devrant/rants`;
+
+	if(range == undefined) {range = ''}
 
 	let parameters = {
 		app: 3,
-		sort, limit, skip, prev_set
+		sort, limit, skip, prev_set, range
 	};
 
 	if (token != null && token != undefined) {
