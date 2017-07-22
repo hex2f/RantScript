@@ -4,7 +4,10 @@ const http = require('./utilities/http');
 const variables = require('./variables');
 const httpSettings = http.SETTINGS;
 
-function profile(user_id, token) {
+function profile(user_id, token, content, skip) {
+	if(content == undefined) {content="all"}
+	if(skip == undefined) {skip=0}
+	
 	const url = `${variables['API']}/users/${user_id}`;
 	let parameters = { app: 3, plat: 2, };
 	if (token != null && token != undefined) {
@@ -14,6 +17,8 @@ function profile(user_id, token) {
 		parameters = {
 			app: 3,
 			plat: 2,
+			content,
+			skip,
 			token_id, token_key, user_id
 		};
 	}
