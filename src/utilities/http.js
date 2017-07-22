@@ -65,14 +65,14 @@ function POST_FILE(uri, params, filepath) {
 	let imageData = fs.readFileSync(filepath);
 
 	form.append('image', imageData, {
-    filename: filepath.split('/').pop(),
-    filepath: filepath,
-    contentType: contenttype,
-    knownLength: imageData.length
-  });
+		filename: filepath.split('/').pop(),
+		filepath: filepath,
+		contentType: contenttype,
+		knownLength: imageData.length
+	});
 
 	const requestURL = `${uri}`;
-  log(`request URL: ${requestURL}`);
+	log(`request URL: ${requestURL}`);
 
 	return fetch(requestURL, { method: 'POST', compress: compress, body: form, headers: { 'Content-Type': 'multipart/form-data; boundary='+form.getBoundary() } })
     .then(function handleRequest(res) {
