@@ -5,19 +5,15 @@ devrant.httpSettings.SET_COMPRESS(false);
 console.log('Debug: ', devrant.httpSettings.GET_DEBUG());
 console.log('Compress: ', devrant.httpSettings.GET_COMPRESS());
 var auth = {
-    auth_token:{
-      id:562403,
-      key:"HIDDEN",
-      expire_time:1496163161,
-      user_id:161184
-    },
+  id: 730130,
+  key: 'WY38fmK1J8kGqahihCqPk_EFGyLuz8RA_9enwcss',
+  expire_time: 1503340260,
+  user_id: 161184
 }
 
 console.log(auth["auth_token"])
 
-devrant
-  .weekly(42, 'top', 1, 0, auth["auth_token"])
-  .then((resp)=>{
-    console.log(resp);
-  })
-  .catch((e)=>{console.log(e)});
+setTimeout(()=>{
+  devrant
+    .postRant("Test Body", "Some, Tags, Here", auth, __dirname+'/images/RantScript.png')
+}, 1000)

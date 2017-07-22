@@ -103,7 +103,7 @@ function login(email, passwd) {
 		.POST(url, parameters);
 }
 
-function postRant(rant, tags, token) {
+function postRant(rant, tags, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants`;
 
 	const token_id = token["id"];
@@ -120,8 +120,11 @@ function postRant(rant, tags, token) {
 		user_id: user_id
 	};
 
-	return http
-		.POST(url, parameters);
+	if(imagePath !== undefined) {
+		return http.POST_FILE(url, parameters, imagePath);
+	} else {
+		return http.POST(url, parameters);
+	}
 }
 
 function postComment(text, rant_id, token) {
