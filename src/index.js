@@ -9,7 +9,16 @@ function profile(user_id, token, content, skip) {
 	if(skip == undefined) {skip=0}
 	
 	const url = `${variables['API']}/users/${user_id}`;
-	let parameters = { app: 3, plat: 2, };
+	let parameters = { app: 3, plat: 2 };
+	if (content != null && content != undefined) {
+		parameters = { app: 3, plat: 2, content };
+	}
+	if (skip != null && skip != undefined) {
+		parameters = { app: 3, plat: 2, skip };
+	}
+	if (content != null && content!= undefined && skip != null && skip != undefined) {
+		parameters = { app: 3, plat: 2, content, skip };
+	}
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
