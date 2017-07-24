@@ -1,5 +1,4 @@
 'use strict';
-const co = require('co');
 const http = require('./http');
 const variables = require('../variables');
 
