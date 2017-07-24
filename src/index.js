@@ -1,40 +1,47 @@
 'use strict';
 const co = require('co');
 const http = require('./utilities/http');
+const getUserIdByName = require('./utilities/getIdByName');
 const variables = require('./variables');
 const httpSettings = http.SETTINGS;
 
 function profile(user_id, token, content, skip) {
-	if(content == undefined) {content="all"}
-	if(skip == undefined) {skip=0}
-	
-	const url = `${variables['API']}/users/${user_id}`;
-	let parameters = { app: 3, plat: 2 };
-	if (content != null && content != undefined) {
-		parameters = { app: 3, plat: 2, content };
-	}
-	if (skip != null && skip != undefined) {
-		parameters = { app: 3, plat: 2, skip };
-	}
-	if (content != null && content!= undefined && skip != null && skip != undefined) {
-		parameters = { app: 3, plat: 2, content, skip };
-	}
-	if (token != null && token != undefined) {
-		const token_id = token["id"];
-		const token_key = token["key"];
-		const user_id = token["user_id"];
-		parameters = {
-			app: 3,
-			plat: 2,
-			content,
-			skip,
-			token_id, token_key, user_id
-		};
-	}
+	return co(function *resolveUsername() {
+		if(isNaN(user_id)) {
+			user_id = yield getUserIdByName(user_id);
+		}
 
-	return http
-		.GET(url, parameters)
-		.then(data => data.profile);
+		if(content == undefined) {content="all"}
+		if(skip == undefined) {skip=0}
+		
+		const url = `${variables['API']}/users/${user_id}`;
+		let parameters = { app: 3, plat: 2 };
+		if (content != null && content != undefined) {
+			parameters = { app: 3, plat: 2, content };
+		}
+		if (skip != null && skip != undefined) {
+			parameters = { app: 3, plat: 2, skip };
+		}
+		if (content != null && content!= undefined && skip != null && skip != undefined) {
+			parameters = { app: 3, plat: 2, content, skip };
+		}
+		if (token != null && token != undefined) {
+			const token_id = token["id"];
+			const token_key = token["key"];
+			const user_id = token["user_id"];
+			parameters = {
+				app: 3,
+				plat: 2,
+				content,
+				skip,
+				token_id, token_key, user_id
+			};
+		}
+
+		return http
+			.GET(url, parameters)
+			.then(data => data.profile);
+	});
 }
 
 function rant(rant_id, token) {

@@ -12,4 +12,5 @@ var auth = {
 }
 
 devrant
-  .postRant("Test Body", "Some, Tags, Here", auth, __dirname+'/images/RantScript.png')
+  .profile("Dacexi", null, 'rants', 0)
+  .then((res)=>{console.log(res)})
