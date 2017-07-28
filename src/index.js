@@ -143,7 +143,7 @@ function postRant(rant, tags, token, imagePath) {
 	}
 }
 
-function postComment(text, rant_id, token) {
+function postComment(text, rant_id, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/comments`;
 
 	const token_id = token["id"];
@@ -152,15 +152,18 @@ function postComment(text, rant_id, token) {
 
 	const parameters = {
 		app: 3,
-		plat: 3,
+		plat: 2,
 		comment: text,
 		token_id: token_id,
 		token_key: token_key,
 		user_id: user_id
 	};
 
-	return http
-		.POST(url, parameters);
+	if(imagePath !== undefined) {
+		return http.POST_FILE(url, parameters, imagePath);
+	} else {
+		return http.POST(url, parameters);
+	}
 }
 
 function vote(vote, rant_id, token) {

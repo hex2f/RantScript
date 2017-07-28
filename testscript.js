@@ -5,12 +5,14 @@ devrant.httpSettings.SET_COMPRESS(false);
 console.log('Debug: ', devrant.httpSettings.GET_DEBUG());
 console.log('Compress: ', devrant.httpSettings.GET_COMPRESS());
 var auth = {
-  id: 730130,
-  key: 'HIDDEN',
-  expire_time: 1503340260,
+  id: 741550,
+  key: '',
+  expire_time: 1503838554,
   user_id: 161184
 }
 
+console.log(__dirname+'/images/RantScript.png')
+//devrant.login("Dacexi", "N1c3m3m3sbr0ther!!").then((res)=>{console.log(res)})
 devrant
-  .profile("Dacexi", null, 'rants', 0)
+  .postComment("Test 123", 538347, auth, __dirname+'/images/RantScript.png')
   .then((res)=>{console.log(res)})
