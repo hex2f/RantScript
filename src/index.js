@@ -136,7 +136,7 @@ function postRant(rant, tags, token, imagePath) {
 		user_id: user_id
 	};
 
-	if(imagePath !== undefined) {
+	if(imagePath !== undefined && imagePath !== null) {
 		return http.POST_FILE(url, parameters, imagePath);
 	} else {
 		return http.POST(url, parameters);
@@ -159,7 +159,7 @@ function postComment(text, rant_id, token, imagePath) {
 		user_id: user_id
 	};
 
-	if(imagePath !== undefined) {
+	if(imagePath !== undefined && imagePath !== null) {
 		return http.POST_FILE(url, parameters, imagePath);
 	} else {
 		return http.POST(url, parameters);
