@@ -12,7 +12,6 @@ var auth = {
 }
 
 console.log(__dirname+'/images/RantScript.png')
-//devrant.login("Dacexi", "N1c3m3m3sbr0ther!!").then((res)=>{console.log(res)})
 devrant
-  .postComment("Test 123", 538347, auth, __dirname+'/images/RantScript.png')
+  .rants("Test 123", 538347, auth, __dirname+'/images/RantScript.png')
   .then((res)=>{console.log(res)})
