@@ -72,7 +72,7 @@ function rants(sort, limit, skip, prev_set, token, range) {
 		sort, limit, skip, prev_set
 	};
 
-	if(range != undefined) {
+	if(range != undefined && range != null) {
 		parameters = {
 			app: 3,
 			sort, limit, skip, prev_set, range
@@ -87,6 +87,12 @@ function rants(sort, limit, skip, prev_set, token, range) {
 			app: 3,
 			sort, limit, skip, token_id, token_key, user_id, prev_set
 		};
+		if(range != undefined && range != null) {
+			parameters = {
+				app: 3,
+				sort, limit, skip, range, token_id, token_key, user_id, prev_set
+			};
+		}
 	}
 
 	return http
