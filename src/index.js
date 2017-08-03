@@ -215,6 +215,22 @@ function subscribe(bool, userToSubscribe, token) {
 		.POST(url, parameters);
 }
 
+function deleteRant(rant_id, token) {
+	const url = `${variables['API']}/devrant/rants/${rant_id}`;
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+  return http.DELETE(url, parameters);
+}
 
 function vote(vote, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/vote`;
@@ -383,5 +399,6 @@ module.exports = {
 	collabs,
 	stories,
 	weekly,
-	subscribe
+  subscribe,
+  deleteRant
 }
