@@ -195,12 +195,6 @@ function favorite(isfav, rant_id, token) {
 
 function subscribe(bool, userToSubscribe, token) {
 	const url = `${variables['API']}/users/${userToSubscribe}/subscribe`;
-	if(bool === false) {
-		/**
-		 * We don't do anything for now as we don't have DELETE implemented yet
-		 */
-		// const url = `${variables['API']}/devrant/rants/${rant_id}/unfavorite`;
-	}
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
@@ -212,6 +206,10 @@ function subscribe(bool, userToSubscribe, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
+
+	if (!bool) {
+		return http.DELETE(url, parameters);
+	}
 
 	return http
 		.POST(url, parameters);
