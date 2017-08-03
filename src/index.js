@@ -193,6 +193,30 @@ function favorite(isfav, rant_id, token) {
 		.POST(url, parameters);
 }
 
+function subscribe(bool, userToSubscribe, token) {
+	const url = `${variables['API']}/users/${userToSubscribe}/subscribe`;
+	if(bool === false) {
+		/**
+		 * We don't do anything for now as we don't have DELETE implemented yet
+		 */
+		// const url = `${variables['API']}/devrant/rants/${rant_id}/unfavorite`;
+	}
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	return http
+		.POST(url, parameters);
+}
+
 
 function vote(vote, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/vote`;
@@ -360,5 +384,6 @@ module.exports = {
 	clearNotifications,
 	collabs,
 	stories,
-	weekly
+	weekly,
+	subscribe
 }
