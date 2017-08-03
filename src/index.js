@@ -415,7 +415,8 @@ module.exports = {
 	clearNotifications,
 	collabs,
 	stories,
-	weekly,
+  weekly,
+  favorite,
   subscribe,
   deleteRant,
   deleteComment
