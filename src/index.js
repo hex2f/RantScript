@@ -112,6 +112,19 @@ function search(query) {
 		.then(data => data.results);
 }
 
+
+function getFrequentSearchTerms() {
+	const url = `${variables['API']}/devrant/search/tags`;
+	const parameters = {
+    app: 3,
+    plat: 3
+	};
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.tags);
+}
+
 function login(email, passwd) {
 	const url = `${variables['API']}/users/auth-token`;
 	const parameters = {
@@ -419,5 +432,6 @@ module.exports = {
   favorite,
   subscribe,
   deleteRant,
-  deleteComment
+  deleteComment,
+  getFrequentSearchTerms,
 }
