@@ -10,7 +10,7 @@ function profile(user_id, token, content, skip) {
 		if(isNaN(user_id)) {
 			user_id = yield getUserIdByName(user_id);
 		}
-
+    
 		if(content == undefined) {content="all"}
 		if(skip == undefined) {skip=0}
 		
@@ -37,10 +37,10 @@ function profile(user_id, token, content, skip) {
 				token_id, token_key, user_id
 			};
 		}
-
+    
 		return http
-			.GET(url, parameters)
-			.then(data => data.profile);
+      .GET(url, parameters)
+      .then(data => data.profile);
 	});
 }
 
@@ -58,27 +58,27 @@ function rant(rant_id, token) {
 				token_id, token_key, user_id
 			};
 		}
-
+    
 		return http
-			.GET(url, parameters);
+      .GET(url, parameters);
 	});
 }
 
 function rants(sort, limit, skip, prev_set, token, range) {
 	const url = `${variables['API']}/devrant/rants`;
-
+  
 	let parameters = {
 		app: 3,
 		sort, limit, skip, prev_set
 	};
-
+  
 	if(range != undefined && range != null) {
 		parameters = {
 			app: 3,
 			sort, limit, skip, prev_set, range
 		};
 	}
-
+  
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
@@ -94,10 +94,10 @@ function rants(sort, limit, skip, prev_set, token, range) {
 			};
 		}
 	}
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data);
+    .GET(url, parameters)
+    .then(data => data);
 }
 
 function search(query) {
@@ -106,23 +106,23 @@ function search(query) {
 		app: 3,
 		term: query
 	};
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data.results);
+    .GET(url, parameters)
+    .then(data => data.results);
 }
 
 
 function getFrequentSearchTerms() {
 	const url = `${variables['API']}/devrant/search/tags`;
 	const parameters = {
-    app: 3,
-    plat: 3
+		app: 3,
+		plat: 3
 	};
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data.tags);
+    .GET(url, parameters)
+    .then(data => data.tags);
 }
 
 function login(email, passwd) {
@@ -133,18 +133,18 @@ function login(email, passwd) {
 		password: passwd,
 		plat: 3
 	};
-
+  
 	return http
-		.POST(url, parameters);
+    .POST(url, parameters);
 }
 
 function postRant(rant, tags, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants`;
-
+  
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 3,
@@ -154,7 +154,7 @@ function postRant(rant, tags, token, imagePath) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
 	if(imagePath !== undefined && imagePath !== null) {
 		return http.POST_FILE(url, parameters, imagePath);
 	} else {
@@ -164,11 +164,11 @@ function postRant(rant, tags, token, imagePath) {
 
 function postComment(text, rant_id, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/comments`;
-
+  
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 2,
@@ -177,7 +177,7 @@ function postComment(text, rant_id, token, imagePath) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
 	if(imagePath !== undefined && imagePath !== null) {
 		return http.POST_FILE(url, parameters, imagePath);
 	} else {
@@ -193,7 +193,7 @@ function favorite(isfav, rant_id, token) {
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 2,
@@ -201,9 +201,9 @@ function favorite(isfav, rant_id, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
 	return http
-		.POST(url, parameters);
+    .POST(url, parameters);
 }
 
 function subscribe(bool, userToSubscribe, token) {
@@ -211,7 +211,7 @@ function subscribe(bool, userToSubscribe, token) {
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 2,
@@ -219,13 +219,13 @@ function subscribe(bool, userToSubscribe, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
 	if (!bool) {
 		return http.DELETE(url, parameters);
 	}
-
+  
 	return http
-		.POST(url, parameters);
+    .POST(url, parameters);
 }
 
 function deleteRant(rant_id, token) {
@@ -233,7 +233,7 @@ function deleteRant(rant_id, token) {
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 2,
@@ -241,7 +241,7 @@ function deleteRant(rant_id, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
   return http.DELETE(url, parameters);
 }
 
@@ -250,7 +250,7 @@ function deleteComment(comment_id, token) {
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 2,
@@ -258,17 +258,17 @@ function deleteComment(comment_id, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
   return http.DELETE(url, parameters);
 }
 
 function vote(vote, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/vote`;
-
+  
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		plat: 3,
@@ -277,18 +277,18 @@ function vote(vote, rant_id, token) {
 		token_key: token_key,
 		user_id: user_id
 	};
-
+  
 	return http
-		.POST(url, parameters);
+    .POST(url, parameters);
 }
 
 function voteComment(vote, comment_id, token) {
 	const url = `${variables['API']}/comments/${comment_id}/vote`;
-
+  
 	const token_id = token["id"];
 	const token_key = token["key"];
 	const user_id = token["user_id"];
-
+  
 	const parameters = {
 		app: 3,
 		token_id: token_id,
@@ -296,9 +296,9 @@ function voteComment(vote, comment_id, token) {
 		user_id: user_id,
 		vote: vote,
 	};
-
+  
 	return http
-		.POST(url, parameters);
+    .POST(url, parameters);
 }
 
 function notifications(token, last_time) {
@@ -313,9 +313,9 @@ function notifications(token, last_time) {
 		plat: 2,
 		ext_prof: 1,
 	};
-
+  
 	return http
-		.GET(url, parameters)
+    .GET(url, parameters)
 }
 
 function clearNotifications(token) {
@@ -327,21 +327,21 @@ function clearNotifications(token) {
 		user_id: token["user_id"],
 		plat: 2,
 	};
-
+  
 	return http
-		.DELETE(url, parameters)
+    .DELETE(url, parameters)
 }
 
 function collabs(sort, limit, skip, token) {
 	if(sort == undefined)
 		sort = 'recent';
 	const url = `${variables['API']}/devrant/collabs`;
-
+  
 	let parameters = {
 		app: 3,
 		sort, limit, skip
 	};
-
+  
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
@@ -351,10 +351,10 @@ function collabs(sort, limit, skip, token) {
 			sort, limit, skip, token_id, token_key, user_id
 		};
 	}
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data.rants);
+    .GET(url, parameters)
+    .then(data => data.rants);
 }
 
 function stories(range, sort, limit, skip, token) {
@@ -365,12 +365,12 @@ function stories(range, sort, limit, skip, token) {
 	// sort = ['recent', 'top']
 	// range = ['day', 'week', 'month', 'all']
 	const url = `${variables['API']}/devrant/story-rants`;
-
+  
 	let parameters = {
 		app: 3,
 		range, sort, limit, skip
 	};
-
+  
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
@@ -380,10 +380,10 @@ function stories(range, sort, limit, skip, token) {
 			range, sort, limit, skip, token_id, token_key, user_id
 		};
 	}
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data.rants);
+    .GET(url, parameters)
+    .then(data => data.rants);
 }
 
 function weekly(week, sort, limit, skip, token) {
@@ -392,12 +392,12 @@ function weekly(week, sort, limit, skip, token) {
 	// sort = ['algo', recent', 'top']
 	// week = <week_number>
 	const url = `${variables['API']}/devrant/weekly-rants`;
-
+  
 	let parameters = {
 		app: 3,
 		week, sort, limit, skip
 	};
-
+  
 	if (token != null && token != undefined) {
 		const token_id = token["id"];
 		const token_key = token["key"];
@@ -407,10 +407,10 @@ function weekly(week, sort, limit, skip, token) {
 			week, sort, limit, skip, token_id, token_key, user_id
 		};
 	}
-
+  
 	return http
-		.GET(url, parameters)
-		.then(data => data.rants);
+    .GET(url, parameters)
+    .then(data => data.rants);
 }
 
 module.exports = {
@@ -428,10 +428,10 @@ module.exports = {
 	clearNotifications,
 	collabs,
 	stories,
-  weekly,
-  favorite,
-  subscribe,
-  deleteRant,
-  deleteComment,
-  getFrequentSearchTerms,
+	weekly,
+	favorite,
+	subscribe,
+	deleteRant,
+	deleteComment,
+	getFrequentSearchTerms,
 }
