@@ -413,21 +413,39 @@ function weekly(week, sort, limit, skip, token) {
     .then(data => data.rants);
 }
 
+function surpriseRant(token) {
+	const url = `${variables['API']}/devrant/rants/surprise`;
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+  return http.GET(url, parameters);
+}
+
 module.exports = {
-  httpSettings,
-  profile,
-  rant,
-  rants,
-  search,
-  login,
-  postRant,
-  postComment,
-  vote,
-  voteComment,
-  notifications,
-  clearNotifications,
-  collabs,
-  stories,
+	httpSettings,
+	profile,
+	rant,
+	rants,
+	search,
+	login,
+	postComment,
+	postRant,
+	vote,
+	voteComment,
+	surpriseRant,
+	notifications,
+	clearNotifications,
+	collabs,
+	stories,
   weekly,
   favorite,
   subscribe,
