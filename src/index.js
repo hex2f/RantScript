@@ -185,8 +185,8 @@ function postComment(text, rant_id, token, imagePath) {
 	}
 }
 
-function editComment(text, rant_id, token, imagePath) {
-	const url = `${variables['API']}/comments/${rant_id}`;
+function editComment(text, comment_id, token, imagePath) {
+	const url = `${variables['API']}/comments/${comment_id}`;
 
 	const token_id = token["id"];
 	const token_key = token["key"];
