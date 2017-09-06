@@ -185,6 +185,29 @@ function postComment(text, rant_id, token, imagePath) {
 	}
 }
 
+function editComment(text, rant_id, token, imagePath) {
+	const url = `${variables['API']}/comments/${rant_id}`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		comment: text,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	if(imagePath !== undefined && imagePath !== null) {
+		return http.POST_FILE(url, parameters, imagePath);
+	} else {
+		return http.POST(url, parameters);
+	}
+}
+
 function favorite(isfav, rant_id, token) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/favorite`;
 	if(isfav === false) {
@@ -446,10 +469,11 @@ module.exports = {
 	clearNotifications,
 	collabs,
 	stories,
-  weekly,
-  favorite,
-  subscribe,
-  deleteRant,
-  deleteComment,
-  getFrequentSearchTerms,
+	weekly,
+	favorite,
+	subscribe,
+	deleteRant,
+	deleteComment,
+	getFrequentSearchTerms,
+	editComment
 }
