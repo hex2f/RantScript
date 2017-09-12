@@ -100,6 +100,35 @@ function rants(sort, limit, skip, prev_set, token, range) {
 		.then(data => data);
 }
 
+function weeklyRants(sort, limit, skip, token) {
+	const url = `${variables['API']}/devrant/weekly-rants`;
+
+	let parameters = {
+		app: 3,
+		sort, limit, skip
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			sort, limit, skip, token_id, token_key, user_id
+		};
+		if(range != undefined && range != null) {
+			parameters = {
+				app: 3,
+				sort, limit, skip, token_id, token_key, user_id
+			};
+		}
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data);
+}
+
 function search(query) {
 	const url = `${variables['API']}/devrant/search`;
 	const parameters = {
@@ -111,7 +140,6 @@ function search(query) {
 		.GET(url, parameters)
 		.then(data => data.results);
 }
-
 
 function getFrequentSearchTerms() {
 	const url = `${variables['API']}/devrant/search/tags`;
@@ -458,6 +486,7 @@ module.exports = {
 	profile,
 	rant,
 	rants,
+	weeklyRants,
 	search,
 	login,
 	postComment,

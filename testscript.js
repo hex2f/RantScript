@@ -13,17 +13,7 @@ var auth = {
 
 console.log(__dirname+'/images/RantScript.png')
 devrant
-  .postRant('Testing', 'rantscript', auth)
+  .weeklyRants('recent', 1, 0)
   .then((res)=>{
-    devrant
-      .postComment('Test Comment', res.rant_id, auth)
-      .then((re)=>{
-        console.log(re)
-        // This dosn't work :/
-        devrant
-          .editComment('Edited', res.rant_id, auth)
-          .then((r)=>{
-            console.log(r)
-          })
-      })
+    console.log(res)
   })
