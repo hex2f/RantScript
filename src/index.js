@@ -435,6 +435,31 @@ function weekly(week, sort, limit, skip, token) {
 		.then(data => data.rants);
 }
 
+function listWeekly(token) {
+	const url = `${variables['API']}/devrant/weekly-list`;
+
+	let parameters = {
+		app: 3,
+		plat: 2,
+	};
+
+	if (token != null && token != undefined) {
+		const token_id = token["id"];
+		const token_key = token["key"];
+		const user_id = token["user_id"];
+		parameters = {
+			app: 3,
+			plat: 2,
+			token_id, token_key, user_id
+		};
+	}
+
+	return http
+		.GET(url, parameters)
+		.then(data => data.weeks);
+}
+
+
 function surpriseRant(token) {
 	const url = `${variables['API']}/devrant/rants/surprise`;
 	const token_id = token["id"];
@@ -469,6 +494,7 @@ module.exports = {
 	collabs,
 	stories,
 	weekly,
+	listWeekly,
 	favorite,
 	subscribe,
 	deleteRant,

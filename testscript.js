@@ -13,7 +13,7 @@ var auth = {
 
 console.log(__dirname+'/images/RantScript.png')
 devrant
-  .weeklyRants('recent', 1, 0)
+  .listWeekly()
   .then((res)=>{
     console.log(res)
   })
