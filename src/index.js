@@ -161,6 +161,29 @@ function postRant(rant, tags, token, imagePath) {
 	}
 }
 
+function editRant(text, rant_id, token, imagePath) {
+	const url = `${variables['API']}/rants/${rant_id}`;
+
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		rant: text,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	if(imagePath !== undefined && imagePath !== null) {
+		return http.POST_FILE(url, parameters, imagePath);
+	} else {
+		return http.POST(url, parameters);
+	}
+}
+
 function postComment(text, rant_id, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants/${rant_id}/comments`;
 
