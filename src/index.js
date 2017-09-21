@@ -161,7 +161,7 @@ function postRant(rant, tags, token, imagePath) {
 	}
 }
 
-function editRant(text, rant_id, token, imagePath) {
+function editRant(text, tags, rant_id, token, imagePath) {
 	const url = `${variables['API']}/rants/${rant_id}`;
 
 	const token_id = token["id"];
@@ -172,6 +172,7 @@ function editRant(text, rant_id, token, imagePath) {
 		app: 3,
 		plat: 2,
 		rant: text,
+		tags: tags,
 		token_id: token_id,
 		token_key: token_key,
 		user_id: user_id
