@@ -137,8 +137,10 @@ function login(email, passwd) {
 		.POST(url, parameters);
 }
 
-function postRant(rant, tags, token, imagePath) {
+function postRant(rant, tags, type, token, imagePath) {
 	const url = `${variables['API']}/devrant/rants`;
+
+	if(type == undefined) {type = 1}
 
 	const token_id = token["id"];
 	const token_key = token["key"];
@@ -149,6 +151,7 @@ function postRant(rant, tags, token, imagePath) {
 		plat: 3,
 		rant: rant,
 		tags: tags,
+		type: type,
 		token_id: token_id,
 		token_key: token_key,
 		user_id: user_id
