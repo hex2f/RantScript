@@ -527,5 +527,6 @@ module.exports = {
 	deleteRant,
 	deleteComment,
 	getFrequentSearchTerms,
-	editComment
+	editComment,
+	editRant
 }
