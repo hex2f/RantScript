@@ -165,7 +165,7 @@ function postRant(rant, tags, type, token, imagePath) {
 }
 
 function editRant(text, tags, rant_id, token, imagePath) {
-	const url = `${variables['API']}/rants/${rant_id}`;
+	const url = `${variables['API']}/devrant/rants/${rant_id}`;
 
 	const token_id = token["id"];
 	const token_key = token["key"];
