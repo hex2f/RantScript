@@ -21,6 +21,7 @@ function log(m) {
 }
 
 /**
+ * Use this functions for HTTP GET requst
  * @param {String} uri    - request URL
  * @param {Object} params - request parameters
  * @return {Promise}  HTTP response
@@ -47,6 +48,14 @@ function GET(uri, params) {
 		});
 }
 
+/**
+ * For posting a file using multipart formdata
+ * 
+ * @param {any} uri - request URL
+ * @param {any} params - request parameters
+ * @param {any} filepath - path to the file
+ * @returns 
+ */
 function POST_FILE(uri, params, filepath) {
 	var form = new FormData();
 
@@ -90,6 +99,14 @@ function POST_FILE(uri, params, filepath) {
 		});
 }
 
+/**
+ * Use this functions for HTTP POST request
+ * 
+ * @param {String} uri    - request URL
+ * @param {Object} params - request parameters
+ * @return {Promise}  HTTP response
+ */
+
 function POST(uri, params) {
 	var form = new FormData();
 
@@ -115,6 +132,14 @@ function POST(uri, params) {
 			throw error;
 		});
 }
+
+/**
+ * Use this functions for HTTP DELETE requst
+ * 
+ * @param {String} uri    - request URL
+ * @param {Object} params - request parameters
+ * @return {Promise}  HTTP response
+ */
 
 function DELETE(uri, params) {
 	const requestURL = `${uri}${url.format({ query: params })}`;
