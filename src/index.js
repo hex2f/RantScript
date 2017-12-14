@@ -487,6 +487,16 @@ function listWeekly(token) {
 }
 
 
+function supporters() {
+	const url = `${variables['API']}/devrant/supporters`;
+	
+	const parameters = {
+		app: 3	
+	};
+	
+  	return http.GET(url, parameters);
+}
+
 function surpriseRant(token) {
 	const url = `${variables['API']}/devrant/rants/surprise`;
 	const token_id = token["id"];
@@ -528,5 +538,6 @@ module.exports = {
 	deleteComment,
 	getFrequentSearchTerms,
 	editComment,
-	editRant
+	editRant,
+	supporters
 }
