@@ -8,6 +8,7 @@
 ```javascript
 npm install rantscript
 ```
+
 ### Examples
 
 #### Console logging the 10 top posts on devRant:
@@ -22,7 +23,7 @@ devRant
   })
 ```
 
-#### Enableing debug mode and compression:
+#### Enabling debug mode and compression:
 
 ```javascript
 var devRant = require('rantscript');
@@ -59,22 +60,22 @@ devRant
 ##
 
 ### All Functions
-| Function     | Usage                                             | Description               |
-| ------------ | ------------------------------------------------- | ------------------------- |
-| .rants       | .rants('sort', limit, skip, token)                | Load rants.               |
-| .rant        | .rant(rant_id)                                    | Load a single rant by id. |
-| .search      | .search('search term')                            | Search on devRant         |
-| .profile     | .profile('Username')                              | Load a profile by name    |
-| .login       | .login('Username','Password')                     | Get a devRant auth token  |
-| .postRant    | .postRant('Rant', 'Tags', token)                  | Post a rant to devRant    |
-| .postComment | .postComment('Comment', rant_id, token)           | Post a comment to a rant  |
-| .vote        | .vote(<0 = down & 1 = up>, rant_id, token)        | Vote on a rant            |
-| .voteComment | .voteComment(<0 = down & 1 = up>, rant_id, token) | Vote on a comment         |
-| .httpSettings| See Bellow | Change settings for the http requests|
+| Function     | Usage                                               | Description                           |
+| ------------ | --------------------------------------------------- | ------------------------------------- |
+| .rants       | `.rants('sort', limit, skip, token)`                | Load rants                            |
+| .rant        | `.rant(rant_id)`                                    | Load a single rant by id              |
+| .search      | `.search('search term')`                            | Search on devRant                     |
+| .profile     | `.profile('Username')`                              | Load a profile by name                |
+| .login       | `.login('Username','Password')`                     | Get a devRant auth token              |
+| .postRant    | `.postRant('Rant', 'Tags', token)`                  | Post a rant to devRant                |
+| .postComment | `.postComment('Comment', rant_id, token)`           | Post a comment to a rant              |
+| .vote        | `.vote(<0 = down & 1 = up>, rant_id, token)`        | Vote on a rant                        |
+| .voteComment | `.voteComment(<0 = down & 1 = up>, rant_id, token)` | Vote on a comment                     |
+| .httpSettings| See Below                                           | Change settings for the http requests |
 
 ### All Settings
-| Function     | Usage                                                 |
-| ------------ | ----------------------------------------------------- |
+| Function                      | Description                          |
+| ----------------------------- | ------------------------------------ |
 | .GET_DEBUG()                  | Returns the current Debug state.     |   
 | .SET_DEBUG(true or false)     | Enable or disable console.log        |
 | .GET_COMPRESS()               | Returns the current Compress state.  |
