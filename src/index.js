@@ -255,6 +255,43 @@ function favorite(isfav, rant_id, token) {
 		.POST(url, parameters);
 }
 
+function mute(rant_id, token) {
+	const url = `${variables['API']}/devrant/rants/${rant_id}/mute`;
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	return http
+		.POST(url, parameters);
+}
+
+function unmute(rant_id, token) {
+	const url = `${variables['API']}/devrant/rants/${rant_id}/unmute`;
+	const token_id = token["id"];
+	const token_key = token["key"];
+	const user_id = token["user_id"];
+
+	const parameters = {
+		app: 3,
+		plat: 2,
+		token_id: token_id,
+		token_key: token_key,
+		user_id: user_id
+	};
+
+	return http
+		.POST(url, parameters);
+}
+
+
 function subscribe(bool, userToSubscribe, token) {
 	const url = `${variables['API']}/users/${userToSubscribe}/subscribe`;
 	const token_id = token["id"];
@@ -523,6 +560,8 @@ module.exports = {
 	weekly,
 	listWeekly,
 	favorite,
+        mute,
+        unmute,
 	subscribe,
 	deleteRant,
 	deleteComment,
